@@ -18,6 +18,7 @@ class _ImagePickerScreenState extends State<ImagePickerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: const Text('Image Picker')),
       body: BlocBuilder<ImagePickerBloc, ImagePickerState>(
         builder: (context, state) {
           return Column(
