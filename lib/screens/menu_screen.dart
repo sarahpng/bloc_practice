@@ -45,6 +45,15 @@ class MenuScreen extends StatelessWidget {
               ),
             ),
           ),
+          GestureDetector(
+            onTap: () => Navigator.pushNamed(context, '/favouriteApp'),
+            child: Card(
+              child: ListTile(
+                title: Text('Favourite App Example'),
+                trailing: Icon(Icons.arrow_right),
+              ),
+            ),
+          ),
         ],
       ),
     );
