@@ -1,4 +1,3 @@
-import 'package:bloc_practice/bloc/favourite_app/favourite_app_event.dart';
 import 'package:bloc_practice/bloc/posts/posts_bloc.dart';
 import 'package:bloc_practice/bloc/posts/posts_event.dart';
 import 'package:bloc_practice/bloc/posts/posts_state.dart';

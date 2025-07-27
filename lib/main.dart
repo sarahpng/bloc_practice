@@ -6,6 +6,7 @@ import 'package:bloc_practice/repository/posts_repository.dart';
 import 'package:bloc_practice/screens/counter/counter_screen.dart';
 import 'package:bloc_practice/screens/favourite_app/favourite_app_screen.dart';
 import 'package:bloc_practice/screens/image_picker/image_picker_screen.dart';
+import 'package:bloc_practice/screens/login/login_screen.dart';
 import 'package:bloc_practice/screens/menu_screen.dart';
 import 'package:bloc_practice/screens/posts/posts_screen.dart';
 import 'package:bloc_practice/screens/switch_example/switch_example_screen.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
           Routes.todo: (context) => const TodoScreen(),
           Routes.favouriteApp: (context) => const FavouriteAppScreen(),
           Routes.posts: (context) => const PostsScreen(),
+          Routes.login: (context) => const LoginScreen(),
         },
       ),
     );

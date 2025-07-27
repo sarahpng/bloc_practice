@@ -64,6 +64,15 @@ class MenuScreen extends StatelessWidget {
               ),
             ),
           ),
+          GestureDetector(
+            onTap: () => Navigator.pushNamed(context, Routes.login),
+            child: Card(
+              child: ListTile(
+                title: Text('Login Example'),
+                trailing: Icon(Icons.arrow_right),
+              ),
+            ),
+          ),
         ],
       ),
     );

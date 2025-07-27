@@ -6,4 +6,5 @@ class Routes {
   static const todo = '/todo';
   static const favouriteApp = '/favouriteApp';
   static const posts = '/posts';
+  static const login = '/login';
 }
