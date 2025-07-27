@@ -23,6 +23,7 @@ class _PostsScreenState extends State<PostsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('Fetch data with bloc')),
       body: BlocBuilder<PostsBloc, PostsState>(
         builder: (context, state) {
           switch (state.postStatus) {
@@ -31,17 +32,42 @@ class _PostsScreenState extends State<PostsScreen> {
             case PostStatus.success:
               return Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: ListView.builder(
-                  itemCount: state.postList.length,
-                  itemBuilder: (context, index) {
-                    final post = state.postList[index];
-                    return Card(
-                      child: ListTile(
-                        title: Text(post.email!),
-                        subtitle: Text(post.body!),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextFormField(
+                      decoration: InputDecoration(
+                        hintText: 'Search with email',
+                        border: OutlineInputBorder(),
                       ),
-                    );
-                  },
+                      onChanged: (filterKey) {
+                        context.read<PostsBloc>().add(SearchItem(filterKey));
+                      },
+                    ),
+                    Expanded(
+                      child:
+                          state.searchMessage.isNotEmpty
+                              ? Center(child: Text(state.searchMessage))
+                              : ListView.builder(
+                                itemCount:
+                                    state.tempPostList.isEmpty
+                                        ? state.postList.length
+                                        : state.tempPostList.length,
+                                itemBuilder: (context, index) {
+                                  final post =
+                                      state.tempPostList.isEmpty
+                                          ? state.postList[index]
+                                          : state.tempPostList[index];
+                                  return Card(
+                                    child: ListTile(
+                                      title: Text(post.email!),
+                                      subtitle: Text(post.body!),
+                                    ),
+                                  );
+                                },
+                              ),
+                    ),
+                  ],
                 ),
               );
             case PostStatus.failure:
