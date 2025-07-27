@@ -38,12 +38,22 @@ class _PostsScreenState extends State<PostsScreen> {
                     TextFormField(
                       decoration: InputDecoration(
                         hintText: 'Search with email',
-                        border: OutlineInputBorder(),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
                       ),
                       onChanged: (filterKey) {
                         context.read<PostsBloc>().add(SearchItem(filterKey));
                       },
                     ),
+                    SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Text(
+                        '${state.tempPostList.isEmpty ? state.postList.length : state.tempPostList.length} items',
+                      ),
+                    ),
+                    SizedBox(height: 10),
                     Expanded(
                       child:
                           state.searchMessage.isNotEmpty
