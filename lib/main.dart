@@ -1,13 +1,17 @@
 import 'package:bloc_practice/bloc/counter/counter_bloc.dart';
 import 'package:bloc_practice/bloc/favourite_app/favourite_app_bloc.dart';
 import 'package:bloc_practice/bloc/image_picker/image_picker_bloc.dart';
+import 'package:bloc_practice/bloc/posts/posts_bloc.dart';
 import 'package:bloc_practice/bloc/switch/switch_bloc.dart';
 import 'package:bloc_practice/bloc/todo/todo_bloc.dart';
+import 'package:bloc_practice/constants/routes.dart';
 import 'package:bloc_practice/repository/favourite_repository.dart';
+import 'package:bloc_practice/repository/posts_repository.dart';
 import 'package:bloc_practice/screens/counter/counter_screen.dart';
 import 'package:bloc_practice/screens/favourite_app/favourite_app_screen.dart';
 import 'package:bloc_practice/screens/image_picker/image_picker_screen.dart';
 import 'package:bloc_practice/screens/menu_screen.dart';
+import 'package:bloc_practice/screens/posts/posts_screen.dart';
 import 'package:bloc_practice/screens/switch_example/switch_example_screen.dart';
 import 'package:bloc_practice/screens/todo_screen/todo_screen.dart';
 import 'package:bloc_practice/utils/image_picker_utils.dart';
@@ -30,6 +34,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => ImagePickerBloc(ImagePickerUtils())),
         BlocProvider(create: (_) => TodoBloc()),
         BlocProvider(create: (_) => FavouriteAppBloc(FavouriteRepository())),
+        BlocProvider(create: (_) => PostsBloc(PostRepository())),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -38,14 +43,15 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         ),
-        initialRoute: '/',
+        initialRoute: Routes.menuScreen,
         routes: {
-          '/': (context) => const MenuScreen(),
-          '/counter': (context) => const CounterScreen(),
-          '/switch': (context) => const SwitchExampleScreen(),
-          '/imagePicker': (context) => const ImagePickerScreen(),
-          '/todo': (context) => const TodoScreen(),
-          '/favouriteApp': (context) => const FavouriteAppScreen(),
+          Routes.menuScreen: (context) => const MenuScreen(),
+          Routes.counterScreen: (context) => const CounterScreen(),
+          Routes.switchScreen: (context) => const SwitchExampleScreen(),
+          Routes.imagePickerScreen: (context) => const ImagePickerScreen(),
+          Routes.todo: (context) => const TodoScreen(),
+          Routes.favouriteApp: (context) => const FavouriteAppScreen(),
+          Routes.posts: (context) => const PostsScreen(),
         },
       ),
     );

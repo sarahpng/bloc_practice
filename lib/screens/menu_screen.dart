@@ -1,3 +1,4 @@
+import 'package:bloc_practice/constants/routes.dart';
 import 'package:flutter/material.dart';
 
 class MenuScreen extends StatelessWidget {
@@ -10,7 +11,7 @@ class MenuScreen extends StatelessWidget {
       body: ListView(
         children: [
           GestureDetector(
-            onTap: () => Navigator.pushNamed(context, '/counter'),
+            onTap: () => Navigator.pushNamed(context, Routes.counterScreen),
             child: Card(
               child: ListTile(
                 title: Text('Counter Example'),
@@ -19,7 +20,7 @@ class MenuScreen extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () => Navigator.pushNamed(context, '/switch'),
+            onTap: () => Navigator.pushNamed(context, Routes.switchScreen),
             child: Card(
               child: ListTile(
                 title: Text('Multi States Example'),
@@ -28,7 +29,7 @@ class MenuScreen extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () => Navigator.pushNamed(context, '/imagePicker'),
+            onTap: () => Navigator.pushNamed(context, Routes.imagePickerScreen),
             child: Card(
               child: ListTile(
                 title: Text('Image Picker Example'),
@@ -37,7 +38,7 @@ class MenuScreen extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () => Navigator.pushNamed(context, '/todo'),
+            onTap: () => Navigator.pushNamed(context, Routes.todo),
             child: Card(
               child: ListTile(
                 title: Text('Todo Example'),
@@ -46,10 +47,19 @@ class MenuScreen extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () => Navigator.pushNamed(context, '/favouriteApp'),
+            onTap: () => Navigator.pushNamed(context, Routes.favouriteApp),
             child: Card(
               child: ListTile(
                 title: Text('Favourite App Example'),
+                trailing: Icon(Icons.arrow_right),
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () => Navigator.pushNamed(context, Routes.posts),
+            child: Card(
+              child: ListTile(
+                title: Text('Repository fetch items Example'),
                 trailing: Icon(Icons.arrow_right),
               ),
             ),
