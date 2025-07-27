@@ -12,41 +12,66 @@ class CounterScreen extends StatefulWidget {
 }
 
 class _CounterScreenState extends State<CounterScreen> {
+  late CounterBloc _counterBloc;
+
+  @override
+  void initState() {
+    _counterBloc = CounterBloc();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _counterBloc.close();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('counter')),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          BlocBuilder<CounterBloc, CounterState>(
-            builder: (context, state) {
-              return Text(
-                state.counter.toString(),
-                style: TextStyle(fontSize: 60),
-              );
-            },
-          ),
+    return BlocProvider(
+      create: (_) => _counterBloc,
+      child: Scaffold(
+        appBar: AppBar(title: Text('counter')),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            BlocBuilder<CounterBloc, CounterState>(
+              builder: (context, state) {
+                return Text(
+                  state.counter.toString(),
+                  style: TextStyle(fontSize: 60),
+                );
+              },
+            ),
 
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  context.read<CounterBloc>().add(IncrementCounter());
-                },
-                child: Text('Increment'),
-              ),
-              SizedBox(width: 20),
-              ElevatedButton(
-                onPressed: () {
-                  context.read<CounterBloc>().add(DecrementCounter());
-                },
-                child: Text('decrement'),
-              ),
-            ],
-          ),
-        ],
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                BlocBuilder<CounterBloc, CounterState>(
+                  buildWhen: (previous, current) => false,
+                  builder:
+                      (context, state) => ElevatedButton(
+                        onPressed: () {
+                          context.read<CounterBloc>().add(IncrementCounter());
+                        },
+                        child: Text('Increment'),
+                      ),
+                ),
+                SizedBox(width: 20),
+                BlocBuilder<CounterBloc, CounterState>(
+                  buildWhen: (previous, current) => false,
+                  builder:
+                      (context, state) => ElevatedButton(
+                        onPressed: () {
+                          context.read<CounterBloc>().add(DecrementCounter());
+                        },
+                        child: Text('decrement'),
+                      ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -47,11 +47,8 @@ class _PostsScreenState extends State<PostsScreen> {
                       },
                     ),
                     SizedBox(height: 10),
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: Text(
-                        '${state.tempPostList.isEmpty ? state.postList.length : state.tempPostList.length} items',
-                      ),
+                    Text(
+                      '${state.tempPostList.isEmpty ? state.postList.length : state.tempPostList.length} items',
                     ),
                     SizedBox(height: 10),
                     Expanded(
